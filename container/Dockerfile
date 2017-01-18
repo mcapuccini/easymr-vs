@@ -14,3 +14,6 @@ RUN apt-get update && apt-get install -y openssh-client
 RUN mkdir /var/openeye
 ADD oe_license.txt /var/openeye
 ENV OE_LICENSE /var/openeye/oe_license.txt
+
+# Add receptor
+ADD hiv1_protease.oeb /var/openeye
