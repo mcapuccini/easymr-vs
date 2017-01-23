@@ -62,6 +62,7 @@ object Main {
     // Write to file
     val pw = new PrintWriter(params.outputPath)
     pw.write(topHits)
+    pw.close
 
     // Stop context
     sc.stop
