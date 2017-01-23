@@ -42,3 +42,6 @@ build.log
 
 # cache
 .cache*
+
+# ignore configuration file
+settings.xml
