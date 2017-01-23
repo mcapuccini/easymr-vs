@@ -47,7 +47,6 @@ object Main {
             "&& fred -receptor /var/openeye/hiv1_protease.oeb " +
             "-dbase /input.sdf " +
             "-docked_molecule_file /tmp/output.sdf " +
-            s"-hitlist_size ${params.hitSize} " +
             "&& cp /tmp/output.sdf /output")
       .reduce(
         imageName = "mcapuccini/oe-docking",
@@ -75,11 +74,11 @@ object Main {
 
     val parser = new OptionParser[MainParams]("Main") {
       head("Proof of Concept: use EasyMapReduce for virtual screening.")
-      opt[String]("inputPath")
+      arg[String]("inputPath")
         .required
         .text("SDF library input path")
         .action((x, c) => c.copy(inputPath = x))
-      opt[String]("outputPath")
+      arg[String]("outputPath")
         .required
         .text("SDF hits output path")
         .action((x, c) => c.copy(outputPath = x))
@@ -89,7 +88,7 @@ object Main {
       opt[Int]("hitSize")
         .text(s"number of hits to return (default: ${defaultParams.hitSize})")
         .action((x, c) => c.copy(hitSize = x))
-      opt[Int]("localContext")
+      opt[Unit]("localContext")
         .text(s"set to run Spark in local mode")
         .action((x, c) => c.copy(localContext = true))
     }
