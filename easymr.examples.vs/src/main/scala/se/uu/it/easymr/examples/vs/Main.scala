@@ -26,6 +26,12 @@ object Main {
     if (params.localContext) {
       conf.setMaster("local[2]")
     }
+    if (System.getenv("EASYMR_TMP") != null) {
+      conf.setExecutorEnv("EASYMR_TMP", System.getenv("EASYMR_TMP"))
+    }
+    if (System.getenv("TMPDIR") != null) {
+      conf.setExecutorEnv("TMPDIR", System.getenv("TMPDIR"))
+    }
     val sc = new SparkContext(conf)
     sc.hadoopConfiguration.set(
       SDFRecordReader.SIZE_PROPERTY_NAME,
